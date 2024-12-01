@@ -125,7 +125,15 @@ class CommandInline(admin.StackedInline):
     def output_data(self, obj):
         if obj.status == 'in-progress':
             return format_html(
-                '<div class="loader recent-commands-loader"></div>',
+                '<div class="loader recent-commands-loader status-in-progress">In Progress</div>',
+            )
+        elif obj.status == 'success':
+            return format_html(
+                '<span class="status-success">Success</span>',
+            )
+        elif obj.status == 'failed':
+            return format_html(
+                '<span class="status-fail">Failed</span>',
             )
         return obj.output
 
